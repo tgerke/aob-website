@@ -37,7 +37,7 @@ exports.handler = async function(event, context) {
         // Log the incoming request body
         console.log('Received request body:', event.body);
         
-        const { email } = JSON.parse(event.body);
+        const { email, playerName, playerAge, positionsPlayed } = JSON.parse(event.body);
 
         // Validate email
         if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -64,16 +64,30 @@ exports.handler = async function(event, context) {
             from: process.env.SMTP_FROM
         });
 
+        // Compose email content
+        const emailText = `New signup:
+Email: ${email}
+Player Name: ${playerName}
+Player Age: ${playerAge}
+Positions Played: ${positionsPlayed}`;
+        const emailHtml = `
+            <p><strong>New signup details:</strong></p>
+            <ul>
+                <li><strong>Email:</strong> ${email}</li>
+                <li><strong>Player Name:</strong> ${playerName}</li>
+                <li><strong>Player Age:</strong> ${playerAge}</li>
+                <li><strong>Positions Played:</strong> ${positionsPlayed}</li>
+            </ul>
+            <p>Time: ${new Date().toLocaleString()}</p>
+        `;
+
         // Send notification email to both Travis and Mike
         await transporter.sendMail({
             from: process.env.SMTP_FROM,
             to: ['travis@academyofbaseball.org', 'mike@academyofbaseball.org'],
             subject: 'New Academy of Baseball Interest List Signup',
-            text: `New signup from: ${email}`,
-            html: `
-                <p>New signup from: <strong>${email}</strong></p>
-                <p>Time: ${new Date().toLocaleString()}</p>
-            `
+            text: emailText,
+            html: emailHtml
         });
 
         return jsonResponse(200, { message: 'Successfully subscribed!' });
