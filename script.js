@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('interestForm');
     const emailInput = document.getElementById('email');
+    const playerNameInput = document.getElementById('playerName');
+    const playerAgeInput = document.getElementById('playerAge');
+    const positionsPlayedInput = document.getElementById('positionsPlayed');
 
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -19,7 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const response = await fetch('/.netlify/functions/submit-form', {
                 method: 'POST',
                 body: JSON.stringify({
-                    email: emailInput.value
+                    email: emailInput.value,
+                    playerName: playerNameInput.value,
+                    playerAge: playerAgeInput.value,
+                    positionsPlayed: positionsPlayedInput.value
                 }),
                 headers: {
                     'Content-Type': 'application/json'

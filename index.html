@@ -86,7 +86,10 @@
                         <h3>Join Our Interest List</h3>
                         <p>Enter your email below to stay updated about our programs and upcoming tryouts.</p>
                         <form id="interestForm" onsubmit="return false;">
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            <div><input type="text" id="playerName" name="playerName" placeholder="Player's Name" required></div>
+                            <div><input type="number" id="playerAge" name="playerAge" placeholder="Player's Age as of May 1, 2025" min="1" max="25" required></div>
+                            <div><input type="text" id="positionsPlayed" name="positionsPlayed" placeholder="Positions Played" required></div>
+                            <div><input type="email" id="email" name="email" placeholder="Enter your email" required></div>
                             <button type="submit">Join List</button>
                         </form>
                         <p class="form-disclaimer">We respect your privacy and will never share your information.</p>
