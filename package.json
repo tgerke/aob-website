@@ -1,0 +1,8 @@
+{
+  "name": "academy-of-baseball",
+  "version": "1.0.0",
+  "description": "Academy of Baseball website",
+  "dependencies": {
+    "nodemailer": "^6.10.1"
+  }
+}
