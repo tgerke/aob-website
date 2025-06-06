@@ -108,6 +108,14 @@ section.contact {
     letter-spacing: 1px;
 }
 
+.program-content h4 {
+    color: #7f3630;
+    font-size: 1.1rem;
+    margin: 1.5rem 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 .schedule-table {
     width: 100%;
     margin: 2rem 0;
@@ -379,4 +387,53 @@ section.contact {
     .contact-text {
         font-size: 0.875rem;
     }
+}
+
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9em;
+    background-color: #727272;
+}
+
+.pricing-table th,
+.pricing-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #5a5a5a;
+}
+
+.pricing-table th {
+    background-color: #5a5a5a;
+    font-weight: bold;
+    color: #fff;
+}
+
+.pricing-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: #fff;
+}
+
+.pricing-table td:nth-child(2),
+.pricing-table td:nth-child(3),
+.pricing-table td:nth-child(4) {
+    width: 25%;
+    color: #fff;
+}
+
+.pricing-table tr:nth-child(even) {
+    background-color: #666666;
+}
+
+.pricing-table .price-row {
+    font-weight: bold;
+    background-color: #5a5a5a;
+    color: #fff;
+}
+
+.pricing-table .check {
+    color: #2ecc71 !important;
+    font-weight: bold;
 } 
