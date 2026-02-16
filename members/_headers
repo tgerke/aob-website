@@ -1,0 +1,5 @@
+# Netlify headers for members area
+# Adds additional header to prevent indexing
+
+/*
+  X-Robots-Tag: noindex, nofollow

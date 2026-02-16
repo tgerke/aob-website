@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>Members Area - Academy of Baseball</title>
+    <title>Training Blog - Academy of Baseball</title>
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
@@ -58,7 +58,7 @@
             background-color: #7f3630;
         }
         
-        .members-content {
+        .training-content {
             min-height: calc(100vh - 200px);
             padding: 3rem 0;
         }
@@ -67,7 +67,6 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 0 20px;
-            text-align: left;
         }
         
         .content-section h2 {
@@ -78,49 +77,45 @@
             letter-spacing: 1px;
         }
         
-        .content-section p {
+        .blog-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .blog-entry {
+            background-color: rgba(127, 54, 48, 0.05);
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .blog-entry:hover {
+            border-color: #7f3630;
+        }
+        
+        .blog-date {
+            color: #7f3630;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-preview {
             color: #727272;
             line-height: 1.6;
             margin-bottom: 1rem;
         }
         
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .resource-card {
-            background-color: rgba(127, 54, 48, 0.05);
-            border: 2px solid #333;
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: border-color 0.3s ease;
-        }
-        
-        .resource-card:hover {
-            border-color: #7f3630;
-        }
-        
-        .resource-card h3 {
-            color: #7f3630;
-            font-size: 1.2rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .resource-card p {
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-        
-        .resource-card a {
+        .blog-entry a {
             color: #7f3630;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s ease;
         }
         
-        .resource-card a:hover {
+        .blog-entry a:hover {
             color: #a0453d;
         }
     </style>
@@ -131,44 +126,47 @@
     
     <div class="members-header">
         <div class="container">
-            <h1>Members Area</h1>
-            <p style="color: #727272;">Welcome to the Academy of Baseball members-only section</p>
+            <h1>Training Blog</h1>
+            <p style="color: #727272;">Weekly homework: videos, drills, mental game material</p>
             <div class="members-nav">
-                <a href="../index.html">Home</a>
+                <a href="index.html">Members Home</a>
                 <button onclick="logout()">Logout</button>
             </div>
         </div>
     </div>
     
-    <section class="members-content">
+    <section class="training-content">
         <div class="content-section">
-            <h2>Welcome, 12U Caimans!</h2>
-            <p>This is your members-only area where you can access team-specific content and updates.</p>
+            <h2>Recent Posts</h2>
             
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <h3>Schedule</h3>
-                    <p>View the 12u schedule on TeamSnap</p>
-                    <a href="https://go.teamsnap.com/10145388/home" target="_blank" rel="noopener noreferrer">View Schedule →</a>
-                </div>
+            <ul class="blog-list">
+                <li class="blog-entry">
+                    <div class="blog-date">February 16, 2025</div>
+                    <p class="blog-preview">How We Compete.</p>
+                    <a href="training/2025-02-16.html">Read More →</a>
+                </li>
                 
-                <div class="resource-card">
-                    <h3>Game Logs</h3>
-                    <p>View the 12u game archive on GameChanger</p>
-                    <a href="https://web.gc.com/teams/faeAEEtkP9Ks/2026-spring-academy-of-baseball-caimans-12u" target="_blank" rel="noopener noreferrer">View Game Logs →</a>
-                </div>
+                <li class="blog-entry">
+                    <div class="blog-date">February 17, 2025</div>
+                    <p class="blog-preview">Defensive mechanics: Proper lower body mechanics for fielding ground balls.</p>
+                    <a href="training/2025-02-17.html">Read More →</a>
+                </li>
                 
-                <div class="resource-card">
-                    <h3>Training Blog</h3>
-                    <p>Weekly homework: videos, drills, mental game material</p>
-                    <a href="training.html">View Training Blog →</a>
-                </div>
+                <li class="blog-entry">
+                    <div class="blog-date">February 18, 2025</div>
+                    <p class="blog-preview">Hitting Drills: One-handed swings and hook 'em.</p>
+                    <a href="training/2025-02-18.html">Read More →</a>
+                </li>
                 
-                <div class="resource-card">
-                    <h3>Upcoming Events</h3>
-                    <p><strong>Youth Baseball Day at Petco Park</strong> - April 11, 2026</p>
-                </div>
-            </div>
+                <!-- Add more blog entries here as you create them (add new posts at the BOTTOM for chronological order) -->
+                <!-- Example format:
+                <li class="blog-entry">
+                    <div class="blog-date">Month Day, Year</div>
+                    <p class="blog-preview">Brief description of the post...</p>
+                    <a href="training/YYYY-MM-DD.html">Read More →</a>
+                </li>
+                -->
+            </ul>
         </div>
     </section>
 </body>

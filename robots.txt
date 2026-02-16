@@ -1,0 +1,11 @@
+# Academy of Baseball - robots.txt
+
+# Allow all crawlers to index the main site
+User-agent: *
+Allow: /
+
+# Disallow crawling of the members area
+Disallow: /members/
+
+# Sitemap (optional - add this if you create a sitemap later)
+# Sitemap: https://www.academyofbaseball.org/sitemap.xml
