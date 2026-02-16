@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members Login - Academy of Baseball</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .login-box {
+            background-color: rgba(127, 54, 48, 0.05);
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .login-logo {
+            max-width: 200px;
+            margin-bottom: 2rem;
+        }
+        
+        .login-box h1 {
+            color: #7f3630;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .login-box p {
+            color: #727272;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .login-form input[type="password"] {
+            padding: 0.75rem 1rem;
+            border: 2px solid #333;
+            border-radius: 4px;
+            background-color: #000;
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        .login-form input[type="password"]:focus {
+            outline: none;
+            border-color: #7f3630;
+        }
+        
+        .login-form button {
+            padding: 0.75rem 1.5rem;
+            background-color: #7f3630;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .login-form button:hover {
+            background-color: #a0453d;
+        }
+        
+        .login-form button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+        
+        .error-message {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+            border: 1px solid rgba(220, 53, 69, 0.2);
+            padding: 0.75rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+        
+        .back-link {
+            margin-top: 2rem;
+        }
+        
+        .back-link a {
+            color: #7f3630;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link a:hover {
+            color: #a0453d;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="../img/aob-logo.png" alt="Academy of Baseball Logo" class="login-logo">
+            <h1>Members Area</h1>
+            <p>Enter the password to access the members-only content.</p>
+            
+            <form class="login-form" id="loginForm">
+                <input 
+                    type="password" 
+                    id="password" 
+                    placeholder="Enter password" 
+                    required
+                    autocomplete="off"
+                >
+                <button type="submit" id="loginButton">Access Members Area</button>
+            </form>
+            
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+            
+            <div class="back-link">
+                <a href="../index.html">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Check if already logged in
+        if (localStorage.getItem('aob_session')) {
+            window.location.href = '/members/index.html';
+        }
+        
+        const loginForm = document.getElementById('loginForm');
+        const passwordInput = document.getElementById('password');
+        const loginButton = document.getElementById('loginButton');
+        const errorMessage = document.getElementById('errorMessage');
+        
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const password = passwordInput.value;
+            errorMessage.style.display = 'none';
+            loginButton.disabled = true;
+            loginButton.textContent = 'Verifying...';
+            
+            try {
+                const response = await fetch('/.netlify/functions/verify-password', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Store session token
+                    localStorage.setItem('aob_session', data.sessionToken);
+                    localStorage.setItem('aob_session_time', Date.now());
+                    
+                    // Redirect to members area
+                    window.location.href = '/members/index.html';
+                } else {
+                    errorMessage.textContent = data.message || 'Invalid password. Please try again.';
+                    errorMessage.style.display = 'block';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                errorMessage.textContent = 'An error occurred. Please try again.';
+                errorMessage.style.display = 'block';
+            } finally {
+                loginButton.disabled = false;
+                loginButton.textContent = 'Access Members Area';
+            }
+        });
+    </script>
+</body>
+</html>
