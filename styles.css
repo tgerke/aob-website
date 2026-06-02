@@ -213,7 +213,8 @@ section.contact {
 
 .interest-form input[type="text"],
 .interest-form input[type="number"],
-.interest-form input[type="email"] {
+.interest-form input[type="email"],
+.interest-form input[type="tel"] {
     flex: 1;
     padding: 0.75rem 1rem;
     border: 2px solid #333;
@@ -225,14 +226,16 @@ section.contact {
 
 .interest-form input[type="text"]:focus,
 .interest-form input[type="number"]:focus,
-.interest-form input[type="email"]:focus {
+.interest-form input[type="email"]:focus,
+.interest-form input[type="tel"]:focus {
     outline: none;
     border-color: #7f3630;
 }
 
 .interest-form input[type="text"]::placeholder,
 .interest-form input[type="number"]::placeholder,
-.interest-form input[type="email"]::placeholder {
+.interest-form input[type="email"]::placeholder,
+.interest-form input[type="tel"]::placeholder {
     text-align: center;
 }
 
@@ -490,7 +493,7 @@ section.contact {
     margin-top: 1.5rem;
     padding: 0.85rem 1.75rem;
     background-color: #7f3630;
-    color: #fff;
+    color: #fff !important;
     text-decoration: none;
     border-radius: 4px;
     font-size: 1rem;
@@ -499,7 +502,10 @@ section.contact {
     transition: background-color 0.3s ease;
 }
 
-.cta-button:hover {
+.cta-button:hover,
+.cta-button:visited,
+.cta-button:active {
+    color: #fff !important;
     background-color: #a0453d;
 }
 
