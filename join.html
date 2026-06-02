@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join / Tryouts | Academy of Baseball</title>
+    <meta name="description" content="Join the Academy of Baseball interest list to hear about upcoming tryouts for our 13U-18U North County San Diego travel baseball teams.">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="img/aob-logo.png" alt="Academy of Baseball" class="nav-logo">
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="teams.html">Teams</a>
+                <a href="coaches.html">Coaches</a>
+                <a href="join.html" class="active">Join</a>
+                <a href="https://rgbcommerce.com/collections/academy-of-baseball" target="_blank" rel="noopener noreferrer">Gear</a>
+                <a href="https://www.instagram.com/academy_of_baseball" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>Join the Academy</h1>
+                <p>Interested in trying out or learning more? Fill out the form below and we'll follow up with details about your player's age group and upcoming tryouts. Tryouts are open to all players regardless of school.</p>
+            </div>
+        </section>
+
+        <section class="join-section">
+            <div class="container">
+                <div class="interest-form">
+                    <h3>Player Interest Form</h3>
+                    <p>Tell us a bit about your player so we can route you to the right age group.</p>
+                    <form id="interestForm" onsubmit="return false;">
+                        <div class="form-field">
+                            <label for="playerName">Player's Name *</label>
+                            <input type="text" id="playerName" name="playerName" placeholder="Player's full name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="parentName">Parent / Guardian Name</label>
+                            <input type="text" id="parentName" name="parentName" placeholder="Parent or guardian name">
+                        </div>
+                        <div class="form-field">
+                            <label for="ageGroup">Age Group *</label>
+                            <select id="ageGroup" name="ageGroup" required>
+                                <option value="" disabled selected>Select an age group</option>
+                                <option value="13U">13U (Class of 2032)</option>
+                                <option value="14U">14U (Class of 2031)</option>
+                                <option value="15U">15U (Class of 2030)</option>
+                                <option value="16U">16U (Class of 2029)</option>
+                                <option value="17U">17U (Class of 2028)</option>
+                                <option value="18U">18U (Class of 2027)</option>
+                                <option value="Unsure">Not sure / other</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="gradYear">Grad Year / Current Grade</label>
+                            <input type="text" id="gradYear" name="gradYear" placeholder="e.g. Class of 2031 or 8th grade">
+                        </div>
+                        <div class="form-field">
+                            <label for="school">Current School</label>
+                            <input type="text" id="school" name="school" placeholder="Current school">
+                        </div>
+                        <div class="form-field">
+                            <label for="positionsPlayed">Primary Position(s)</label>
+                            <input type="text" id="positionsPlayed" name="positionsPlayed" placeholder="e.g. SS / RHP">
+                        </div>
+                        <div class="form-field">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="Your email" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Phone number">
+                        </div>
+                        <div class="form-field">
+                            <label for="notes">Anything else?</label>
+                            <textarea id="notes" name="notes" rows="3" placeholder="Questions, travel ball history, etc. (optional)"></textarea>
+                        </div>
+                        <button type="submit">Submit</button>
+                    </form>
+                    <p class="form-disclaimer">We respect your privacy and will never share your information.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="https://rgbcommerce.com/collections/academy-of-baseball" target="_blank" rel="noopener noreferrer">Gear Store</a>
+                <a href="https://www.instagram.com/academy_of_baseball" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="teams.html">Teams</a>
+                <a href="coaches.html">Coaches</a>
+            </div>
+            <div class="footer-contact">
+                <p>Contact <a href="mailto:mike@academyofbaseball.org">mike@academyofbaseball.org</a> for high school ages</p>
+                <p>Contact <a href="mailto:travis@academyofbaseball.org">travis@academyofbaseball.org</a> for 14U and below</p>
+            </div>
+            <p class="footer-copy">&copy; 2026 Academy of Baseball &middot; North County San Diego, CA</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

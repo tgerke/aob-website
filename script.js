@@ -1,32 +1,46 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile nav toggle (present on all pages)
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (navToggle && navLinks) {
+        navToggle.addEventListener('click', function() {
+            const isOpen = navLinks.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    }
+
+    // Interest form (only present on join.html)
     const form = document.getElementById('interestForm');
-    const emailInput = document.getElementById('email');
-    const playerNameInput = document.getElementById('playerName');
-    const playerAgeInput = document.getElementById('playerAge');
-    const positionsPlayedInput = document.getElementById('positionsPlayed');
+    if (!form) {
+        return;
+    }
+
+    const fields = ['playerName', 'parentName', 'ageGroup', 'gradYear', 'school', 'positionsPlayed', 'email', 'phone', 'notes'];
 
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
-        
+
         // Remove any existing messages
         const existingMessages = form.parentNode.querySelectorAll('.form-success, .form-error');
         existingMessages.forEach(msg => msg.remove());
-        
+
         // Disable the form while submitting
         const submitButton = form.querySelector('button');
         const originalButtonText = submitButton.textContent;
         submitButton.disabled = true;
         submitButton.textContent = 'Submitting...';
 
+        // Gather field values
+        const payload = {};
+        fields.forEach(id => {
+            const el = document.getElementById(id);
+            payload[id] = el ? el.value : '';
+        });
+
         try {
             const response = await fetch('/.netlify/functions/submit-form', {
                 method: 'POST',
-                body: JSON.stringify({
-                    email: emailInput.value,
-                    playerName: playerNameInput.value,
-                    playerAge: playerAgeInput.value,
-                    positionsPlayed: positionsPlayedInput.value
-                }),
+                body: JSON.stringify(payload),
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -43,19 +57,19 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!response.ok) {
                 throw new Error(data.message || data.details || 'Something went wrong');
             }
-            
+
             // Show success message
             const successMessage = document.createElement('p');
             successMessage.className = 'form-success';
             successMessage.textContent = 'Thank you for your interest! We\'ll be in touch soon.';
             form.parentNode.insertBefore(successMessage, form.nextSibling);
-            
+
             // Reset form
             form.reset();
-            
+
         } catch (error) {
             console.error('Form submission error:', error);
-            
+
             // Show error message
             const errorMessage = document.createElement('p');
             errorMessage.className = 'form-error';
@@ -67,4 +81,4 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.textContent = originalButtonText;
         }
     });
-}); 
+});
