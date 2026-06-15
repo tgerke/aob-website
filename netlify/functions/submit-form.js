@@ -37,12 +37,24 @@ exports.handler = async function(event, context) {
         // Log the incoming request body
         console.log('Received request body:', event.body);
         
-        const { email, playerName, playerAge, positionsPlayed } = JSON.parse(event.body);
+        const {
+            email,
+            playerName,
+            parentName,
+            ageGroup,
+            gradYear,
+            school,
+            positionsPlayed,
+            phone,
+            notes
+        } = JSON.parse(event.body);
 
         // Validate email
         if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             return jsonResponse(400, { message: 'Invalid email address' });
         }
+
+        const safe = (value) => (value && String(value).trim()) || 'Not provided';
 
         // Configure email transporter
         const transporter = nodemailer.createTransport({
@@ -65,18 +77,28 @@ exports.handler = async function(event, context) {
         });
 
         // Compose email content
-        const emailText = `New signup:
+        const emailText = `New interest form submission:
+Age Group: ${safe(ageGroup)}
+Player Name: ${safe(playerName)}
+Parent/Guardian: ${safe(parentName)}
+Grad Year / Grade: ${safe(gradYear)}
+School: ${safe(school)}
+Positions: ${safe(positionsPlayed)}
 Email: ${email}
-Player Name: ${playerName}
-Player Age: ${playerAge}
-Positions Played: ${positionsPlayed}`;
+Phone: ${safe(phone)}
+Notes: ${safe(notes)}`;
         const emailHtml = `
-            <p><strong>New signup details:</strong></p>
+            <p><strong>New interest form submission:</strong></p>
             <ul>
+                <li><strong>Age Group:</strong> ${safe(ageGroup)}</li>
+                <li><strong>Player Name:</strong> ${safe(playerName)}</li>
+                <li><strong>Parent/Guardian:</strong> ${safe(parentName)}</li>
+                <li><strong>Grad Year / Grade:</strong> ${safe(gradYear)}</li>
+                <li><strong>School:</strong> ${safe(school)}</li>
+                <li><strong>Positions:</strong> ${safe(positionsPlayed)}</li>
                 <li><strong>Email:</strong> ${email}</li>
-                <li><strong>Player Name:</strong> ${playerName}</li>
-                <li><strong>Player Age:</strong> ${playerAge}</li>
-                <li><strong>Positions Played:</strong> ${positionsPlayed}</li>
+                <li><strong>Phone:</strong> ${safe(phone)}</li>
+                <li><strong>Notes:</strong> ${safe(notes)}</li>
             </ul>
             <p>Time: ${new Date().toLocaleString()}</p>
         `;
@@ -85,7 +107,7 @@ Positions Played: ${positionsPlayed}`;
         await transporter.sendMail({
             from: process.env.SMTP_FROM,
             to: ['travis@academyofbaseball.org', 'mike@academyofbaseball.org'],
-            subject: 'New Academy of Baseball Interest List Signup',
+            subject: `New AoB Interest Form${ageGroup ? ' — ' + ageGroup : ''}`,
             text: emailText,
             html: emailHtml
         });

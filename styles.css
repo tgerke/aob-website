@@ -16,23 +16,19 @@ body {
 }
 
 main {
-    min-height: 100vh;
-    overflow-y: auto;
-    scroll-snap-type: y proximity;
+    min-height: 60vh;
 }
 
 section {
-    min-height: 100vh;
-    scroll-snap-align: start;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    transition: opacity 0.5s ease;
 }
 
 section.hero {
-    height: 100vh;
+    min-height: 90vh;
+    flex-direction: column;
 }
 
 section.programs {
@@ -217,7 +213,8 @@ section.contact {
 
 .interest-form input[type="text"],
 .interest-form input[type="number"],
-.interest-form input[type="email"] {
+.interest-form input[type="email"],
+.interest-form input[type="tel"] {
     flex: 1;
     padding: 0.75rem 1rem;
     border: 2px solid #333;
@@ -229,14 +226,16 @@ section.contact {
 
 .interest-form input[type="text"]:focus,
 .interest-form input[type="number"]:focus,
-.interest-form input[type="email"]:focus {
+.interest-form input[type="email"]:focus,
+.interest-form input[type="tel"]:focus {
     outline: none;
     border-color: #7f3630;
 }
 
 .interest-form input[type="text"]::placeholder,
 .interest-form input[type="number"]::placeholder,
-.interest-form input[type="email"]::placeholder {
+.interest-form input[type="email"]::placeholder,
+.interest-form input[type="tel"]::placeholder {
     text-align: center;
 }
 
@@ -389,55 +388,6 @@ section.contact {
     }
 }
 
-.pricing-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 0.9em;
-    background-color: #727272;
-}
-
-.pricing-table th,
-.pricing-table td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #5a5a5a;
-}
-
-.pricing-table th {
-    background-color: #5a5a5a;
-    font-weight: bold;
-    color: #fff;
-}
-
-.pricing-table td:first-child {
-    text-align: left;
-    font-weight: 500;
-    color: #fff;
-}
-
-.pricing-table td:nth-child(2),
-.pricing-table td:nth-child(3),
-.pricing-table td:nth-child(4) {
-    width: 25%;
-    color: #fff;
-}
-
-.pricing-table tr:nth-child(even) {
-    background-color: #666666;
-}
-
-.pricing-table .price-row {
-    font-weight: bold;
-    background-color: #5a5a5a;
-    color: #fff;
-}
-
-.pricing-table .check {
-    color: #2ecc71 !important;
-    font-weight: bold;
-}
-
 .event-breakout {
     background-color: rgba(127, 54, 48, 0.1);
     border: 2px solid #7f3630;
@@ -475,4 +425,470 @@ section.contact {
     color: #7f3630;
     display: inline-block;
     min-width: 80px;
+}
+
+/* ===== Site nav ===== */
+.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid #222;
+}
+
+.nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.5rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo {
+    height: 44px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.nav-links a {
+    color: #cfcfcf;
+    text-decoration: none;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #a0453d;
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: #cfcfcf;
+    font-size: 1.6rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* ===== Hero CTA ===== */
+.cta-button {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.85rem 1.75rem;
+    background-color: #7f3630;
+    color: #fff !important;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover,
+.cta-button:visited,
+.cta-button:active {
+    color: #fff !important;
+    background-color: #a0453d;
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    border: 2px solid #7f3630;
+    color: #cfcfcf;
+}
+
+.cta-button.secondary:hover {
+    background-color: rgba(127, 54, 48, 0.2);
+}
+
+.cta-button.small {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+.home-cta-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+/* ===== Single program box ===== */
+.program-box {
+    background-color: rgba(127, 54, 48, 0.08);
+    border: 2px solid #7f3630;
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 520px;
+}
+
+.program-box h4 {
+    margin-top: 0;
+}
+
+.program-price {
+    font-size: 2.5rem;
+    color: #fff;
+    font-weight: bold;
+    margin: 0.5rem 0 1rem;
+}
+
+.program-price span {
+    font-size: 1rem;
+    color: #999;
+    font-weight: normal;
+}
+
+.included-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+}
+
+.included-list li {
+    padding: 0.5rem 0 0.5rem 1.75rem;
+    position: relative;
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(127, 54, 48, 0.2);
+}
+
+.included-list li:last-child {
+    border-bottom: none;
+}
+
+.included-list li::before {
+    content: "\2713";
+    color: #2ecc71;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.program-note {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #999;
+    margin: 0;
+}
+
+/* ===== Page header (interior pages) ===== */
+.page-header {
+    padding: 3rem 0 1rem;
+    text-align: center;
+}
+
+.page-header h1 {
+    color: #7f3630;
+    font-size: 2.25rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.page-header p {
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ===== Teams grid ===== */
+.teams-section,
+.coaches-section,
+.join-section {
+    padding: 2rem 0 4rem;
+    align-items: flex-start;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.team-card {
+    background-color: rgba(127, 54, 48, 0.05);
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 1.5rem;
+    transition: border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.team-card:hover {
+    border-color: #7f3630;
+}
+
+.team-card-head {
+    border-bottom: 2px solid #7f3630;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.team-card-head h2 {
+    color: #7f3630;
+    font-size: 1.75rem;
+    margin: 0;
+}
+
+.team-class {
+    display: block;
+    font-size: 0.85rem;
+    color: #999;
+    margin-top: 0.25rem;
+}
+
+.team-meta {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    flex: 1;
+}
+
+.team-meta li {
+    padding: 0.4rem 0;
+    line-height: 1.4;
+    font-size: 0.92rem;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.team-meta li:last-child {
+    border-bottom: none;
+}
+
+.team-meta strong {
+    color: #cfcfcf;
+    display: block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.placeholder {
+    color: #8a6f6c;
+    font-style: italic;
+}
+
+/* ===== Coaches grid ===== */
+.coach-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.coach-card {
+    background-color: rgba(127, 54, 48, 0.05);
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: border-color 0.3s ease;
+}
+
+.coach-card:hover {
+    border-color: #7f3630;
+}
+
+.coach-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    object-fit: cover;
+}
+
+.placeholder-photo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(127, 54, 48, 0.12);
+    border: 2px dashed #7f3630;
+    color: #8a6f6c;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.coach-card h2 {
+    color: #7f3630;
+    font-size: 1.4rem;
+    margin: 0 0 0.25rem;
+}
+
+.coach-title {
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.coach-meta {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.coach-meta li {
+    padding: 0.4rem 0;
+    line-height: 1.4;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.coach-meta li:last-child {
+    border-bottom: none;
+}
+
+.coach-meta strong {
+    color: #cfcfcf;
+}
+
+.coach-card-tbd {
+    border-style: dashed;
+}
+
+/* ===== Form fields (join page) ===== */
+.form-field {
+    text-align: left;
+    margin-bottom: 0.25rem;
+}
+
+.form-field label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #cfcfcf;
+    margin-bottom: 0.35rem;
+}
+
+.interest-form select,
+.interest-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #333;
+    border-radius: 4px;
+    background-color: #000;
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.interest-form select:focus,
+.interest-form textarea:focus {
+    outline: none;
+    border-color: #7f3630;
+}
+
+.interest-form textarea {
+    resize: vertical;
+}
+
+/* ===== Footer ===== */
+.site-footer {
+    border-top: 1px solid #222;
+    padding: 2.5rem 1.25rem;
+    margin-top: 2rem;
+}
+
+.footer-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-links a {
+    color: #cfcfcf;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #a0453d;
+}
+
+.footer-contact p {
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+}
+
+.footer-contact a {
+    color: #7f3630;
+    text-decoration: none;
+}
+
+.footer-contact a:hover {
+    color: #a0453d;
+}
+
+.footer-copy {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* ===== Nav responsive ===== */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        background-color: rgba(0, 0, 0, 0.97);
+        border-bottom: 1px solid #222;
+        padding: 0.5rem 1.25rem 1rem;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 0.6rem 0;
+        width: 100%;
+        border-bottom: 1px solid #1c1c1c;
+    }
+
+    .program-price {
+        font-size: 2rem;
+    }
 } 

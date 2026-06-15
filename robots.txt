@@ -7,5 +7,5 @@ Allow: /
 # Disallow crawling of the members area
 Disallow: /members/
 
-# Sitemap (optional - add this if you create a sitemap later)
-# Sitemap: https://www.academyofbaseball.org/sitemap.xml
+# Sitemap
+Sitemap: https://www.academyofbaseball.org/sitemap.xml
