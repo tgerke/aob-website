@@ -11,9 +11,3 @@
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
-
-[[redirects]]
-  from = "https://academyofbaseball.org/*"
-  to = "https://www.academyofbaseball.org/:splat"
-  status = 301
-  force = true
