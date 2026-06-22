@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <title>AOB Lineup Cards</title>
+  <style>
+    :root {
+      --aob-red: rgb(127, 54, 48);
+      --page-pad-v: 0.15in;
+      --page-pad-h: 0.2in;
+      --card-gap: 0.15in;
+      --card-h: calc(8.5in - 2 * var(--page-pad-v));
+      --row-h: calc((var(--card-h) - 1.05in) / 16);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 9pt;
+      background: #e8e8e8;
+      padding: 0.5in;
+    }
+
+    .page {
+      width: 11in;
+      height: 8.5in;
+      background: white;
+      margin: 0 auto 0.5in;
+      padding: var(--page-pad-v) var(--page-pad-h);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--card-gap);
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
+
+    .card {
+      height: var(--card-h);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .card-top {
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .card-top img {
+      height: 0.38in;
+      width: auto;
+      max-width: 100%;
+    }
+
+    .title {
+      color: var(--aob-red);
+      font-size: 11pt;
+      font-weight: bold;
+      letter-spacing: 0.04em;
+      margin-top: 0.02in;
+      line-height: 1.1;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 0.12in;
+      margin: 0.05in 0 0.04in;
+      font-size: 7pt;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .meta-left .field,
+    .meta-right .field {
+      display: flex;
+      align-items: baseline;
+      gap: 0.05in;
+      margin-bottom: 0.03in;
+    }
+
+    .meta-left .field label,
+    .meta-right .field label {
+      white-space: nowrap;
+    }
+
+    .meta-left .field input,
+    .meta-right .field input {
+      flex: 1;
+      border: none;
+      border-bottom: 1px solid #000;
+      font-size: 7pt;
+      background: white;
+      min-width: 0;
+    }
+
+    .home-visitor {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.1in 0.15in;
+      font-weight: bold;
+      font-size: 7pt;
+      margin-bottom: 0.03in;
+    }
+
+    .home-visitor label {
+      display: flex;
+      align-items: center;
+      gap: 0.04in;
+    }
+
+    .lineup-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 7.5pt;
+      flex-shrink: 0;
+      table-layout: fixed;
+    }
+
+    .lineup-table thead {
+      border-top: 3px double #000;
+      border-bottom: 1px solid #000;
+    }
+
+    .lineup-table th {
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 6.5pt;
+      padding: 1px 2px;
+      text-align: left;
+      background: white;
+      color: #000;
+      line-height: 1.2;
+      overflow: hidden;
+    }
+
+    .lineup-table td {
+      border: 1px solid #000;
+      padding: 0;
+      height: var(--row-h);
+      vertical-align: middle;
+    }
+
+    .lineup-table .col-row-num { width: 4%; }
+    .lineup-table .col-jersey { width: 7%; }
+    .lineup-table .col-player { width: 38%; }
+    .lineup-table .col-pos { width: 8%; }
+    .lineup-table .col-sub { width: 43%; }
+
+    .lineup-table .row-num {
+      text-align: center;
+      font-weight: bold;
+      font-size: 7pt;
+    }
+
+    .lineup-table th.col-jersey,
+    .lineup-table th.col-pos,
+    .lineup-table .jersey,
+    .lineup-table .pos {
+      text-align: center;
+    }
+
+    .lineup-table td input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      font-size: 7.5pt;
+      padding: 0 2px;
+      background: white;
+    }
+
+    .lineup-table .jersey input,
+    .lineup-table .pos input {
+      text-align: center;
+    }
+
+    .coach-line {
+      display: flex;
+      align-items: baseline;
+      gap: 0.08in;
+      margin-top: 0.05in;
+      font-weight: bold;
+      font-size: 7pt;
+      flex-shrink: 0;
+    }
+
+    .coach-line input {
+      flex: 1;
+      border: none;
+      border-bottom: 1px solid #000;
+      font-size: 7pt;
+      background: white;
+    }
+
+    @media print {
+      body { background: white; padding: 0; }
+      .page { box-shadow: none; margin: 0; page-break-after: always; }
+      .page:last-child { page-break-after: auto; }
+    }
+
+    @page { size: letter landscape; margin: 0; }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="card">
+    <div class="card-top">
+      <img src="/img/aob-logo-text.svg" alt="Academy of Baseball">
+      <div class="title">OFFICIAL LINE-UP</div>
+    </div>
+
+    <div class="meta">
+      <div class="meta-left">
+        <div class="field"><label>TEAM:</label><input type="text"></div>
+        <div class="home-visitor">
+          <label>HOME <input type="checkbox"></label>
+          <label>VISITOR <input type="checkbox"></label>
+        </div>
+        <div class="field"><label>OPPONENT:</label><input type="text"></div>
+      </div>
+      <div class="meta-right">
+        <div class="field"><label>DATE:</label><input type="text"></div>
+        <div class="field"><label>TIME:</label><input type="text"></div>
+        <div class="field"><label>FIELD:</label><input type="text"></div>
+      </div>
+    </div>
+
+    <table class="lineup-table">
+      <colgroup>
+        <col class="col-row-num">
+        <col class="col-jersey">
+        <col class="col-player">
+        <col class="col-pos">
+        <col class="col-sub">
+      </colgroup>
+      <thead>
+        <tr>
+          <th class="col-row-num"></th>
+          <th class="col-jersey">#</th>
+          <th class="col-player">Starting Player</th>
+          <th class="col-pos">Pos</th>
+          <th class="col-sub">Substitution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-num">1</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">2</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">3</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">4</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">5</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">6</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">7</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">8</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">9</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">10</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">11</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">12</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">13</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">14</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">15</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">16</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="coach-line">
+      <label>COACH:</label>
+      <input type="text">
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <img src="/img/aob-logo-text.svg" alt="Academy of Baseball">
+      <div class="title">OFFICIAL LINE-UP</div>
+    </div>
+
+    <div class="meta">
+      <div class="meta-left">
+        <div class="field"><label>TEAM:</label><input type="text"></div>
+        <div class="home-visitor">
+          <label>HOME <input type="checkbox"></label>
+          <label>VISITOR <input type="checkbox"></label>
+        </div>
+        <div class="field"><label>OPPONENT:</label><input type="text"></div>
+      </div>
+      <div class="meta-right">
+        <div class="field"><label>DATE:</label><input type="text"></div>
+        <div class="field"><label>TIME:</label><input type="text"></div>
+        <div class="field"><label>FIELD:</label><input type="text"></div>
+      </div>
+    </div>
+
+    <table class="lineup-table">
+      <colgroup>
+        <col class="col-row-num">
+        <col class="col-jersey">
+        <col class="col-player">
+        <col class="col-pos">
+        <col class="col-sub">
+      </colgroup>
+      <thead>
+        <tr>
+          <th class="col-row-num"></th>
+          <th class="col-jersey">#</th>
+          <th class="col-player">Starting Player</th>
+          <th class="col-pos">Pos</th>
+          <th class="col-sub">Substitution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="row-num">1</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">2</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">3</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">4</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">5</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">6</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">7</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">8</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">9</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">10</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">11</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">12</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">13</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">14</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">15</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+        <tr><td class="row-num">16</td><td class="jersey"><input type="text"></td><td><input type="text"></td><td class="pos"><input type="text"></td><td><input type="text"></td></tr>
+      </tbody>
+    </table>
+
+    <div class="coach-line">
+      <label>COACH:</label>
+      <input type="text">
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

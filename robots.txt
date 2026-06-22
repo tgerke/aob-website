@@ -7,5 +7,9 @@ Allow: /
 # Disallow crawling of the members area
 Disallow: /members/
 
+# Internal tools (not linked from site)
+Disallow: /lineup-card
+Disallow: /lineupcard
+
 # Sitemap
 Sitemap: https://www.academyofbaseball.org/sitemap.xml

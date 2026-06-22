@@ -11,3 +11,8 @@
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+
+[[redirects]]
+  from = "/lineupcard"
+  to = "/lineup-card.html"
+  status = 200
