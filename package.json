@@ -3,13 +3,10 @@
   "version": "1.0.0",
   "description": "Academy of Baseball website",
   "scripts": {
-    "dev": "netlify dev",
+    "dev": "npx netlify dev",
     "build": "echo 'No build step required'"
   },
   "dependencies": {
     "nodemailer": "^6.10.1"
-  },
-  "devDependencies": {
-    "netlify-cli": "^23.15.1"
   }
 }
