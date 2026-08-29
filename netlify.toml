@@ -16,3 +16,8 @@
   from = "/lineupcard"
   to = "/lineup-card.html"
   status = 200
+
+[[redirects]]
+  from = "/dugoutcard"
+  to = "/dugout-card.html"
+  status = 200

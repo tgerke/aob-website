@@ -10,6 +10,8 @@ Disallow: /members/
 # Internal tools (not linked from site)
 Disallow: /lineup-card
 Disallow: /lineupcard
+Disallow: /dugout-card
+Disallow: /dugoutcard
 
 # Sitemap
 Sitemap: https://www.academyofbaseball.org/sitemap.xml
